@@ -8,6 +8,37 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 from math import *
+from OpenGL.GL import shaders
+
+VERTEX_SHADER = """
+#version 330
+
+layout (location=0) in vec4 position;
+layout (location=1) in vec4 color;
+
+smooth out vec4 theColor;
+
+void main()
+{
+    gl_Position = position;
+    theColor = color;
+}
+"""
+
+FRAGMENT_SHADER = """
+#version 330
+
+smooth in vec4 theColor;
+out vec4 outputColor;
+
+void main()
+{
+    outputColor = theColor;
+}
+"""
+
+shaderProgram = None
+VAO = None
 
 #Array of 4 tuple
 #array for:
@@ -22,6 +53,45 @@ imageHeight = "705"
 windowWidth = int(1500)
 windowHeight = int(705)
 
+def initialize():
+    global VERTEX_SHADER
+    global FRAGMENT_SHADER
+    global shaderProgram
+    global VAO
+    # compile shaders and program
+    vertexShader = shaders.compileShader(VERTEX_SHADER, GL_VERTEX_SHADER)
+    fragmentShader = shaders.compileShader(FRAGMENT_SHADER, GL_FRAGMENT_SHADER)
+    shaderProgram = shaders.compileProgram(vertexShader, fragmentShader)
+
+    # triangle position and color
+    vertexData = numpy.array([0.0, 0.5, 0.0, 1.0,
+                            0.5, -0.366, 0.0, 1.0,
+                            -0.5, -0.366, 0.0, 1.0,
+                            1.0, 0.0, 0.0, 1.0,
+                            0.0, 1.0, 0.0, 1.0,
+                            0.0, 0.0, 1.0, 1.0, ],
+                            dtype=numpy.float32)
+
+    # create VAO
+    VAO = glGenVertexArrays(1)
+    glBindVertexArray(VAO)
+
+    # create VBO
+    VBO = glGenBuffers(1)
+    glBindBuffer(GL_ARRAY_BUFFER, VBO)
+    glBufferData(GL_ARRAY_BUFFER, vertexData.nbytes, vertexData, GL_STATIC_DRAW)
+
+    # enable array and set up data
+    glEnableVertexAttribArray(0)
+    glEnableVertexAttribArray(1)
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, None)
+    # the last parameter is a pointer
+    # python donot have pointer, have to using ctypes
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, ctypes.c_void_p(48))
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0)
+    glBindVertexArray(0)
+
 #Function to initiate the 2D orthogonal window
 def initiate2DWindow(r,g,b):
     #Clear buffer
@@ -29,6 +99,25 @@ def initiate2DWindow(r,g,b):
     #Set 2D orthogonal window with specified width and height
     glMatrixMode (GL_PROJECTION)
     gluOrtho2D (0.0, float(imageWidth), 0.0, float(imageHeight))
+
+def drawMountain():
+    global shaderProgram
+    global VAO
+    glClearColor(0, 0, 0, 1)
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+    # active shader program
+    glUseProgram(shaderProgram)
+
+    glBindVertexArray(VAO)
+
+    # draw triangle
+    glDrawArrays(GL_TRIANGLES, 0, 3)
+
+    glBindVertexArray(0)
+    glUseProgram(0)
+
+    glutSwapBuffers()
 
 #Function to draw the display
 def renderDisplay():
@@ -40,6 +129,7 @@ def renderDisplay():
     drawCahaya()
     drawMatahari()
     drawPelangi()
+    drawMountain()
 
     #Draw line and flush the buffer
     glFlush()
@@ -185,6 +275,8 @@ glutInitWindowSize (windowWidth, windowHeight)
 glutInitWindowPosition (0, 0)
 #Create window with desired name
 glutCreateWindow ("Grafika Pemandangan")
+#Shader
+initialize()
 #Pop the window
 initiate2DWindow(0,0,0)
 #Render the display
