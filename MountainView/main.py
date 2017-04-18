@@ -40,10 +40,20 @@ def renderDisplay():
     drawPelangi()
     drawLeftMountain()
     drawRightMountain()
+    drawClouds(150, 500)
+    drawClouds(1350, 500)
 
+    #Left
     drawTree(0,-500)
     drawTree(120,-500)
     drawTree(240,-500)
+
+    #Middle
+    drawTree(450,-500)
+    drawTree(570,-500)
+    drawTree(690,-500)
+
+    #Right
     drawTree(900,-500)
     drawTree(1020,-500)
     drawTree(1140,-500)
@@ -65,6 +75,46 @@ def drawMatahari():
         glVertex2f(cosine,sine)
     glEnd()
 
+def drawWhiteCircle(posx, posy):
+    sides = 200
+    radius = 30
+    glBegin(GL_POLYGON)
+    glColor3ub(255, 255, 255)
+    for i in range(sides+2):
+        cosine = (radius * cos(i*2*pi/sides))+posx
+        sine = (radius * sin(i*2*pi/sides))+posy
+        glVertex2f(cosine,sine)
+    glEnd()
+
+def drawClouds(posx, posy):
+    #Corner left
+    drawWhiteCircle(posx-95, posy)
+
+    #Two left
+    drawWhiteCircle(posx-70, posy-10)
+    drawWhiteCircle(posx-70, posy+10)
+
+    #Middle left
+    drawWhiteCircle(posx-40, posy-20)
+    drawWhiteCircle(posx-40, posy)
+    drawWhiteCircle(posx-40, posy+20)
+
+    #Middle
+    drawWhiteCircle(posx, posy-25)
+    drawWhiteCircle(posx, posy)
+    drawWhiteCircle(posx, posy+25)
+
+    #Middle right
+    drawWhiteCircle(posx+40, posy-20)
+    drawWhiteCircle(posx+40, posy)
+    drawWhiteCircle(posx+40, posy+20)
+
+    #Two right
+    drawWhiteCircle(posx+70, posy-10)
+    drawWhiteCircle(posx+70, posy+10)
+
+    #Corner right
+    drawWhiteCircle(posx+95, posy)
 
 def drawPelangi():
     posx, posy = 750,-10
