@@ -191,8 +191,10 @@ def drawLeftMountain():
     glBegin(GL_POLYGON)
     #glColor3ub(173, 216, 230)
     #glColor3ub(0, 191, 255)
-    glColor3ub(30, 144, 255)
+    #glColor3ub(30, 144, 255)
+    glColor3ub(25, 25, 112)
     glVertex2i(dx, 300+dy)
+    glColor3ub(30, 144, 255)
     glVertex2i(950+dx, 300+dy)
     glColor3ub(255, 255, 255)
     glVertex2i(375+dx, 900+dy)
@@ -204,8 +206,10 @@ def drawRightMountain():
 
     #Draw mountain
     glBegin(GL_POLYGON)
-    glColor3ub(30, 144, 255)
+    #glColor3ub(30, 144, 255)
+    glColor3ub(25, 25, 112)
     glVertex2i(dx, 300+dy)
+    glColor3ub(30, 144, 255)
     glVertex2i(900+dx, 300+dy)
     glColor3ub(255, 255, 255)
     glVertex2i(475+dx, 900+dy)
