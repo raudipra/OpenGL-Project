@@ -1,5 +1,6 @@
 #OpenGL library import
 import OpenGL
+import ctypes
 OpenGL.ERROR_ON_COPY = True
 
 #For creating window
@@ -39,7 +40,7 @@ def renderDisplay():
     drawCahaya()
     drawMatahari()
     drawPelangi()
-    
+
     #Draw line and flush the buffer
     glFlush()
 
@@ -147,7 +148,7 @@ def drawLangit():
     glVertex2i(0,0)
     glVertex2i(1500,0)
     glColor3ub(129,220,215)
-    glVertex2i(750,350) 
+    glVertex2i(750,350)
     glEnd()
 
     glBegin(GL_POLYGON)
@@ -155,7 +156,7 @@ def drawLangit():
     glVertex2i(1500,0)
     glVertex2i(1500,705)
     glColor3ub(129,220,215)
-    glVertex2i(750,350) 
+    glVertex2i(750,350)
     glEnd()
 
     glBegin(GL_POLYGON)
@@ -163,7 +164,7 @@ def drawLangit():
     glVertex2i(1500,705)
     glVertex2i(0,705)
     glColor3ub(129,220,215)
-    glVertex2i(750,350) 
+    glVertex2i(750,350)
     glEnd()
 
     glBegin(GL_POLYGON)
@@ -171,7 +172,7 @@ def drawLangit():
     glVertex2i(0,705)
     glVertex2i(0,0)
     glColor3ub(129,220,215)
-    glVertex2i(750,350) 
+    glVertex2i(750,350)
     glEnd()
 
 #Initiate glut windoe
@@ -190,5 +191,3 @@ initiate2DWindow(0,0,0)
 glutDisplayFunc(renderDisplay)
 #Run glut main loop to keep the window open until it's closed
 glutMainLoop()
-
-
