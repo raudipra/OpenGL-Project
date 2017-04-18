@@ -63,7 +63,7 @@ texture = 0
 
 def LoadTextures():
     #global texture
-    image = open("NeHe.bmp")
+    image = open("Sample.bmp")
 
     ix = image.size[0]
     iy = image.size[1]
