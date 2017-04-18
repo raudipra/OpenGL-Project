@@ -183,40 +183,6 @@ def drawTree(dx, dy):
     glVertex2i(190+dx, 650+dy)
     glEnd()
 
-def drawTree(dx, dy):
-    #batang
-    glBegin(GL_POLYGON)
-    glColor3ub(102, 51, 0)
-    glVertex2i(150+dx, 500+dy)
-    glVertex2i(230+dx, 500+dy)
-    glVertex2i(190+dx, 600+dy)
-    glEnd()
-
-    #draw leaves
-    glBegin(GL_POLYGON)
-    glColor3ub(10, 51, 0)
-    glVertex2i(130+dx, 540+dy)
-    glVertex2i(250+dx, 540+dy)
-    glColor3ub(0, 255, 0)
-    glVertex2i(190+dx, 610+dy)
-    glEnd()
-
-    glBegin(GL_POLYGON)
-    glColor3ub(10, 51, 0)
-    glVertex2i(135+dx, 570+dy)
-    glVertex2i(245+dx, 570+dy)
-    glColor3ub(0, 255, 0)
-    glVertex2i(190+dx, 630+dy)
-    glEnd()
-
-    glBegin(GL_POLYGON)
-    glColor3ub(10, 51, 0)
-    glVertex2i(140+dx, 590+dy)
-    glVertex2i(240+dx, 590+dy)
-    glColor3ub(0, 255, 0)
-    glVertex2i(190+dx, 650+dy)
-    glEnd()
-
 def drawLeftMountain():
     dx = 25
     dy = -300
