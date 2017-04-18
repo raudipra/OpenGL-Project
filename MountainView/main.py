@@ -34,11 +34,12 @@ def renderDisplay():
     #Clear buffer
     glClear(GL_COLOR_BUFFER_BIT)
 
-    #Draw dragon
     drawLangit()
     drawCahaya()
     drawMatahari()
     drawPelangi()
+    drawLeftMountain()
+    drawRightMountain()
 
     drawTree(0,-500)
     drawTree(120,-500)
@@ -46,7 +47,7 @@ def renderDisplay():
     drawTree(900,-500)
     drawTree(1020,-500)
     drawTree(1140,-500)
-    
+
     #Draw line and flush the buffer
     glFlush()
 
@@ -182,6 +183,67 @@ def drawTree(dx, dy):
     glVertex2i(190+dx, 650+dy)
     glEnd()
 
+def drawTree(dx, dy):
+    #batang
+    glBegin(GL_POLYGON)
+    glColor3ub(102, 51, 0)
+    glVertex2i(150+dx, 500+dy)
+    glVertex2i(230+dx, 500+dy)
+    glVertex2i(190+dx, 600+dy)
+    glEnd()
+
+    #draw leaves
+    glBegin(GL_POLYGON)
+    glColor3ub(10, 51, 0)
+    glVertex2i(130+dx, 540+dy)
+    glVertex2i(250+dx, 540+dy)
+    glColor3ub(0, 255, 0)
+    glVertex2i(190+dx, 610+dy)
+    glEnd()
+
+    glBegin(GL_POLYGON)
+    glColor3ub(10, 51, 0)
+    glVertex2i(135+dx, 570+dy)
+    glVertex2i(245+dx, 570+dy)
+    glColor3ub(0, 255, 0)
+    glVertex2i(190+dx, 630+dy)
+    glEnd()
+
+    glBegin(GL_POLYGON)
+    glColor3ub(10, 51, 0)
+    glVertex2i(140+dx, 590+dy)
+    glVertex2i(240+dx, 590+dy)
+    glColor3ub(0, 255, 0)
+    glVertex2i(190+dx, 650+dy)
+    glEnd()
+
+def drawLeftMountain():
+    dx = 25
+    dy = -300
+
+    #Draw mountain
+    glBegin(GL_POLYGON)
+    #glColor3ub(173, 216, 230)
+    #glColor3ub(0, 191, 255)
+    glColor3ub(30, 144, 255)
+    glVertex2i(dx, 300+dy)
+    glVertex2i(950+dx, 300+dy)
+    glColor3ub(255, 255, 255)
+    glVertex2i(375+dx, 900+dy)
+    glEnd()
+
+def drawRightMountain():
+    dx = 575
+    dy = -300
+
+    #Draw mountain
+    glBegin(GL_POLYGON)
+    glColor3ub(30, 144, 255)
+    glVertex2i(dx, 300+dy)
+    glVertex2i(900+dx, 300+dy)
+    glColor3ub(255, 255, 255)
+    glVertex2i(475+dx, 900+dy)
+    glEnd()
 
 def drawLangit():
     glBegin(GL_POLYGON)
