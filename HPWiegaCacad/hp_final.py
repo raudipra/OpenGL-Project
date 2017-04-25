@@ -37,6 +37,7 @@ class TestContext( BaseContext ):
     self.vbo = vbo.VBO(
       array( [
         #Depan
+        #[posisi titik awal, posisi titik final, warna]
         [ 1, 1, 1, 5, 1, 1, 1, 1, 0],
         [-1, 1, 1, 3, 1, 1, 0, 1, 0],
         [ 1,-1, 1, 5,-1, 1, 0, 1, 0],
